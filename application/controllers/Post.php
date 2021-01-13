@@ -18,7 +18,7 @@ class Post extends CI_Controller
     public function public_get_all()
     {
         $posts = $this->PostModel->get_all();
-        $this->load->view("index", ["posts" => $posts]);
+        $this->load->view("home", ["posts" => $posts]);
     }
 
     public function public_get($id)

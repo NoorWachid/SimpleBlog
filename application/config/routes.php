@@ -49,6 +49,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
 $route['default_controller'] = 'Post/public_get_all';
-$route['404_override'] = '';
 $route['post/(:num)'] = 'Post/public_get/$1';
+
+$route['404_override'] = 'Page/not_found';
+$route['about'] = 'Page/about';
+$route['login'] = 'Page/login';
+$route['signup'] = 'Page/signup';
