@@ -16,10 +16,14 @@ class Page extends CI_Controller
 
     public function login()
     {
+        if ($this->session->has_userdata("usr_id")) {
+            redirect(site_url("dashboard"));
+        }
+
         $this->load->view("login");
     }
 
-    public function login_action()
+    public function login_process()
     {
         $this->load->library("form_validation");
         $this->load->library("session");
@@ -56,5 +60,13 @@ class Page extends CI_Controller
         $ss->set_userdata("usr_id", $user->id);
         $ss->set_userdata("usr_username", $user->username);
         redirect(site_url("dashboard"));
+    }
+
+    public function logout_process()
+    {  
+        $this->session->unset_userdata("usr_id");
+        $this->session->unset_userdata("usr_username");
+        redirect(site_url("login"));
+        return;
     }
 }

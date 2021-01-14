@@ -23,7 +23,7 @@
             <h3 class="mb-0 mx-2"><?php echo SITE_NAME ?></h3>
             <div>
             <a class="mx-2" href="<?php echo site_url() ?>">Home</a>
-            <a class="mx-2" href="<?php echo site_url("login") ?>">Logout</a>
+            <a class="mx-2" href="<?php echo site_url("logout") ?>">Logout</a>
             </div>
         </div>
     </div>

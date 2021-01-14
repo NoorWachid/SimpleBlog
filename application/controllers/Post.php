@@ -23,6 +23,11 @@ class Post extends CI_Controller
 
     public function index()
     {
+        $if (!$this->session->has_userdata("usr_id")) {
+            redirect(site_url("login"));
+            return;
+        }
+
         $posts = $this->PostModel->get_all();
         $this->load->view("posts/index", ["posts" => $posts]);
     }
@@ -60,10 +65,10 @@ class Post extends CI_Controller
     public function update_process($id)
     {
         $user_id = $this->session->userdata("usr_id");
-
         $data = $this->input->post();
-        $title   = "Untitled";
-        $content = "";
+        $post = $this->PostModel->get($id);
+        $title   = $post->title;
+        $content = $post->content;
 
         if ($data["title"]) {
             $title = $data["title"];
@@ -72,7 +77,7 @@ class Post extends CI_Controller
             $content = $data["content"];
         }
 
-        $this->PostModel->insert($title, $content, $user_id);
+        $this->PostModel->update($id, $title, $content);
         redirect(site_url("dashboard"));
     }
 

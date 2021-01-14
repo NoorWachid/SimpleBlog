@@ -56,6 +56,7 @@ $route['post/(:num)'] = 'Post/public_get/$1';
 $route['404_override'] = 'Page/not_found';
 $route['about'] = 'Page/about';
 $route['login'] = 'Page/login';
-$route['signup'] = 'Page/signup';
+$route['logout'] = 'Page/logout_process';
+//$route['signup'] = 'Page/signup';
 
 $route["dashboard"] = 'Post/index';

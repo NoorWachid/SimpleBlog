@@ -31,7 +31,7 @@
         <div class="col-md-4">
         
         <div class="mb-5">
-        <form action="<?php echo site_url("Page/login_action") ?>" method="post">
+        <form action="<?php echo site_url("Page/login_process") ?>" method="post">
             <div class="form-group">
                 <input name="username" type="text" class="form-control" placeholder="Username">
             </div>

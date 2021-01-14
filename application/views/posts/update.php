@@ -32,24 +32,17 @@
         <div class="col-md-8">
         
         <div class="mb-5">
-            <div class="mb-3 text-right">
-                <a class="btn btn-primary" href="<?php echo site_url("Post/create") ?>">Add New Post</a>
-            </div>
-            <table class="table">
-                <tr>
-                    <th>Title</th>
-                    <th>Options</th>
-                </tr>
-                <?php foreach ($posts as $post): ?>
-                <tr>
-                    <td><?php echo $post->title ?></td>
-                    <td>
-                        <a href="<?php echo site_url("Post/update/" . $post->id) ?>">Update</a>
-                        <a href="<?php echo site_url("Post/delete_process/" . $post->id) ?>" class="text-danger">Delete</a>
-                    </td>
-                </tr>
-                <?php endforeach ?>
-            </table>
+            <form action="<?php echo site_url("Post/update_process/" . $post->id) ?>" method="POST">
+                <div class="form-group">
+                    <input type="text" class="form-control" name="title" placeholder="Title" value="<?php echo $post->title ?>">
+                </div>
+                <div class="form-group">
+                    <textarea name="content" class="form-control" rows="10" placeholder="Content"><?php echo $post->content ?></textarea>
+                </div>
+                <div class="form-group text-right">
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </form>
         </div>
     </div>
 
