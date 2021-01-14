@@ -6,3 +6,10 @@
 
 - Create/update/delete post
 - Markdown parser
+
+
+### Default
+
+user = noorwachid
+
+password = whoa
