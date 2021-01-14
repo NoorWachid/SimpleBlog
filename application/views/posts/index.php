@@ -16,6 +16,7 @@
             font-family: 'Bodoni Moda', serif;
         }
     </style>
+    <link rel="stylesheet" href="<?php echo base_url("assets/font-awesome.min.css") ?>">
 </head>
 <body class="container">
     <div class="my-5 text-center">
@@ -33,19 +34,20 @@
         
         <div class="mb-5">
             <div class="mb-3 text-right">
-                <a class="btn btn-primary" href="<?php echo site_url("Post/create") ?>">Add New Post</a>
+                <a class="btn btn-primary" href="<?php echo site_url("Post/create") ?>"><i class="icon-plus"></i>  New Post</a>
             </div>
             <table class="table">
                 <tr>
                     <th>Title</th>
-                    <th>Options</th>
+                    <th class="text-right">Options</th>
                 </tr>
                 <?php foreach ($posts as $post): ?>
                 <tr>
                     <td><?php echo $post->title ?></td>
-                    <td>
-                        <a href="<?php echo site_url("Post/update/" . $post->id) ?>">Update</a>
-                        <a href="<?php echo site_url("Post/delete_process/" . $post->id) ?>" class="text-danger">Delete</a>
+                    <td class="text-right">
+                        <a href="<?php echo site_url("Post/update/" . $post->id) ?>"><i class="icon-pencil"></i></a>
+                        <span class="mr-2"></span>
+                        <a href="<?php echo site_url("Post/delete_process/" . $post->id) ?>" class="text-danger"><i class="icon-trash"></i></a>
                     </td>
                 </tr>
                 <?php endforeach ?>
@@ -53,6 +55,5 @@
         </div>
     </div>
 
-    <script src="<?php echo base_url("assets/bootstrap.min.css") ?>"></script>
 </body>
 </html>

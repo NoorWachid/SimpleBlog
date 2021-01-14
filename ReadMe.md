@@ -1,7 +1,5 @@
 # SimpleBlog
 
-![Home](resources/home.png)
-
 ### Features
 
 - Create/update/delete post
@@ -9,7 +7,12 @@
 
 
 ### Default
+username: `noorwachid` <br>
+password: `whoa`
 
-user = noorwachid
+![Home](resources/ss_home.png)
+![Home](resources/ss_post.png)
+![Home](resources/ss_login.png)
+![Home](resources/ss_dashboard.png)
+![Home](resources/ss_create_post.png)
 
-password = whoa
