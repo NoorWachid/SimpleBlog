@@ -7,8 +7,8 @@ class Post extends CI_Controller
         parent::__construct();
 
         $this->load->model("PostModel");
-
     }
+
     public function index()
     {
         $posts = $this->PostModel->get_all();

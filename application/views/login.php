@@ -31,14 +31,21 @@
         <div class="col-md-4">
         
         <div class="mb-5">
-        <form action="<?php site_url("Page/login_action") ?>" method="post">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+        <form action="<?php echo site_url("Page/login_action") ?>" method="post">
+            <div class="form-group">
+                <input name="username" type="text" class="form-control" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input name="password" type="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <small class="text-danger d-block"><?php echo $this->session->flashdata("msg_username") ?></small>
+                    <small class="text-danger d-block"><?php echo $this->session->flashdata("msg_password") ?></small>
+                </div>
+                <div class="col-md-4 d-flex justify-content-end align-items-start">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
         </form>
         </div>
     </div>

@@ -5,14 +5,14 @@ class UserModel extends CI_Model
     private $table = "users";
 
     public function has_username($username) {
-        $row = $this->db->get_where($this->table, [
+        $query = $this->db->get_where($this->table, [
             "username" => $username
-        ])->row();
+        ]);
 
-        return !!$row;
+        return $query->num_rows() > 0;
     }
 
-    public function get_password($username) {
+    public function get($username) {
         return $this->db->get_where($this->table, [
             "username" => $username
         ])->row();
