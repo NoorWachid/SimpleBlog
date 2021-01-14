@@ -23,7 +23,7 @@ class Post extends CI_Controller
 
     public function index()
     {
-        $if (!$this->session->has_userdata("usr_id")) {
+        if (!$this->session->has_userdata("usr_id")) {
             redirect(site_url("login"));
             return;
         }
