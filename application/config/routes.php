@@ -57,3 +57,5 @@ $route['404_override'] = 'Page/not_found';
 $route['about'] = 'Page/about';
 $route['login'] = 'Page/login';
 $route['signup'] = 'Page/signup';
+
+$route["dashboard"] = 'Post/index';

@@ -53,6 +53,8 @@ class Page extends CI_Controller
             return;
         }
 
+        $ss->set_userdata("logged_in", "TRUE");
+        $ss->set_userdata("username", $user->username);
         redirect(site_url("dashboard"));
     }
 }
