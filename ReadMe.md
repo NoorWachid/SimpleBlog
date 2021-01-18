@@ -5,6 +5,9 @@
 - Create/update/delete post
 - Markdown parser
 
+### Requirements
+- MySQL 5.7+
+- PHP 7.2+
 
 ### Default
 username: `noorwachid` <br>
