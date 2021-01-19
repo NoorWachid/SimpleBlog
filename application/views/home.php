@@ -35,8 +35,9 @@
         <div class="mb-5">
             <a href="<?php echo $url ?>"><h2><?php echo $post->title ?></h2></a>
             <div class="text-secondary mb-2">
-                at <?php echo $post->created_at ?> 
-                by <?php echo $post->username ?>
+                <?php echo date_format(new DateTime($post->created_at), "l, j F o") ?> 
+                &sdot; <?php echo $post->username ?>
+                &sdot; <?php echo $post->comment_length ?> comments
             </div>
             <div>
                 <?php echo substr($post->content, 0, 500) ?>

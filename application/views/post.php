@@ -32,8 +32,8 @@
             <div>
                 <h2><?php echo $post->title ?></h2>
                 <div class="text-secondary mb-4">
-                    at <?php echo $post->created_at ?> 
-                    by <?php echo $post->username ?>
+                    <?php echo date_format(new DateTime($post->created_at), "l, j F o") ?> 
+                    &sdot; <?php echo $post->username ?>
                 </div>
                 <div>
                     <?php 
