@@ -11,7 +11,7 @@ class Comment extends CI_Controller
 
     private function is_logged_in()
     {
-        return $this->session->has_userdata("usr_id")) {
+        return $this->session->has_userdata("usr_id");
     }
 
 	public function create_process()
