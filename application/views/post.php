@@ -29,22 +29,48 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-        
-        <div class="mb-5">
-            <h2><?php echo $post->title ?></h2>
-            <div class="text-secondary mb-4">
-                at <?php echo $post->created_at ?> 
-                by <?php echo $post->username ?>
-            </div>
             <div>
-                <?php 
-                
-                require_once APPPATH . "third_party/Parsedown.php";
-                $converter = new Parsedown();
+                <h2><?php echo $post->title ?></h2>
+                <div class="text-secondary mb-4">
+                    at <?php echo $post->created_at ?> 
+                    by <?php echo $post->username ?>
+                </div>
+                <div>
+                    <?php 
+                    
+                    require_once APPPATH . "third_party/Parsedown.php";
+                    $converter = new Parsedown();
+    
+                    echo $converter->text($post->content);
+                    
+                    ?>
+                </div>
+            </div>
 
-                echo $converter->text($post->content);
-                
-                ?>
+            <hr class="my-4">
+
+            <div class="mb-5">
+                <div class="mb-3">
+                    <?php if (count($comments) > 0): ?>
+                        <?php foreach ($comments as $comment): ?>
+                            <div>
+                                <b><?php echo $comment->username ?></b>:
+                                <?php echo $comment->content ?>
+                            </div>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <div class="text-muted">No comment yet</div>
+                    <?php endif ?>
+                </div>
+                <form action="<?php echo site_url("Comment/create_process") ?>" method="post">
+                    <div class="input-group">
+                        <input type="hidden" name="post_id" value="<?php echo $post->id ?>">
+                        <input class="form-control" type="text" name="content" placeholder="Type here...">
+                        <div class="input-group-append">
+                            <input class="btn btn-primary" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
