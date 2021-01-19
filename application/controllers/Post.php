@@ -17,14 +17,25 @@ class Post extends CI_Controller
 
     public function public_get($id)
     {
+        $comments = [];
+
         $post = $this->PostModel->get($id);
-        $this->load->view("post", ["post" => $post]);
+        $this->load->view("post", [
+            "post"     => $post,
+            "comments" => $comments,
+        ]);
+    }
+
+    private function is_logged_in()
+    {
+        if (!$this->session->has_userdata("usr_id")) {
+            redirect(site_url("login"));
+        }
     }
 
     public function index()
     {
-        if (!$this->session->has_userdata("usr_id")) {
-            redirect(site_url("login"));
+        if ($this->is_logged_in()) {
             return;
         }
 
@@ -34,11 +45,19 @@ class Post extends CI_Controller
 
     public function create()
     {
+        if ($this->is_logged_in()) {
+            return;
+        }
+
         $this->load->view("posts/create");
     }
 
     public function update($id)
     {
+        if ($this->is_logged_in()) {
+            return;
+        }
+
         $post = $this->PostModel->get($id);
         $this->load->view("posts/update", ["post" => $post]);
     }
@@ -51,10 +70,10 @@ class Post extends CI_Controller
         $title   = "Untitled";
         $content = "";
 
-        if ($data["title"]) {
+        if (isset($data["title"])) {
             $title = $data["title"];
         }
-        if ($data["content"]) {
+        if (isset($data["content"])) {
             $content = $data["content"];
         }
 
