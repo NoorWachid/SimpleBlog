@@ -9,6 +9,8 @@ class CommentModel extends CI_Model
         $db->where("post_id", $id);
         $db->from("comments");
         $db->join("users", "users.id = user_id");
+
+        return $db->get()->result();
 	}
 
 	public function get($id) 
