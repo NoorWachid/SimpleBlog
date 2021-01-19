@@ -13,6 +13,12 @@ class CommentModel extends CI_Model
         return $db->get()->result();
 	}
 
+    public function get_all_length_by_post($id)
+    {
+        $this->db->where("post_id", $id);
+        return $this->db->count_all_results("comments");
+    }
+
 	public function get($id) 
 	{
 		$db = $this->db;

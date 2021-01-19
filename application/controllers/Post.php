@@ -13,6 +13,11 @@ class Post extends CI_Controller
     public function public_get_all()
     {
         $posts = $this->PostModel->get_all();
+
+        foreach ($posts as $post) {
+            $post->comment_length = $this->CommentModel->get_all_length_by_post($post->id);
+        }
+
         $this->load->view("home", ["posts" => $posts]);
     }
 
@@ -29,7 +34,7 @@ class Post extends CI_Controller
 
     private function is_logged_in()
     {
-        return $this->session->has_userdata("usr_id")) {
+        return $this->session->has_userdata("usr_id");
     }
 
     public function index()
@@ -113,7 +118,7 @@ class Post extends CI_Controller
         if (!$this->is_logged_in()) {
             return redirect(site_url("login"));
         }
-        
+
         $user_id = $this->session->userdata("usr_id");
 
         $this->PostModel->delete($id);
