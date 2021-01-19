@@ -7,6 +7,7 @@ class Post extends CI_Controller
         parent::__construct();
 
         $this->load->model("PostModel");
+        $this->load->model("CommentModel");
     }
 
     public function public_get_all()
@@ -17,9 +18,9 @@ class Post extends CI_Controller
 
     public function public_get($id)
     {
-        $comments = [];
-
         $post = $this->PostModel->get($id);
+        $comments = $this->CommentModel->get_all_by_post($id);
+
         $this->load->view("post", [
             "post"     => $post,
             "comments" => $comments,
@@ -28,15 +29,13 @@ class Post extends CI_Controller
 
     private function is_logged_in()
     {
-        if (!$this->session->has_userdata("usr_id")) {
-            redirect(site_url("login"));
-        }
+        return $this->session->has_userdata("usr_id")) {
     }
 
     public function index()
     {
-        if ($this->is_logged_in()) {
-            return;
+        if (!$this->is_logged_in()) {
+            return redirect(site_url("login"));
         }
 
         $posts = $this->PostModel->get_all();
@@ -45,8 +44,8 @@ class Post extends CI_Controller
 
     public function create()
     {
-        if ($this->is_logged_in()) {
-            return;
+        if (!$this->is_logged_in()) {
+            return redirect(site_url("login"));
         }
 
         $this->load->view("posts/create");
@@ -54,8 +53,8 @@ class Post extends CI_Controller
 
     public function update($id)
     {
-        if ($this->is_logged_in()) {
-            return;
+        if (!$this->is_logged_in()) {
+            return redirect(site_url("login"));
         }
 
         $post = $this->PostModel->get($id);
@@ -64,6 +63,10 @@ class Post extends CI_Controller
 
     public function create_process()
     {
+        if (!$this->is_logged_in()) {
+            return redirect(site_url("login"));
+        }
+
         $user_id = $this->session->userdata("usr_id");
 
         $data = $this->input->post();
@@ -83,6 +86,10 @@ class Post extends CI_Controller
 
     public function update_process($id)
     {
+        if (!$this->is_logged_in()) {
+            return redirect(site_url("login"));
+        }
+
         $user_id = $this->session->userdata("usr_id");
         $data = $this->input->post();
         $post = $this->PostModel->get($id);
@@ -103,6 +110,10 @@ class Post extends CI_Controller
 
     public function delete_process($id)
     {
+        if (!$this->is_logged_in()) {
+            return redirect(site_url("login"));
+        }
+        
         $user_id = $this->session->userdata("usr_id");
 
         $this->PostModel->delete($id);
