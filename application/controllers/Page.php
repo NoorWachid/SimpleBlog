@@ -42,14 +42,13 @@ class Page extends CI_Controller
         }
 
         $data = $this->input->post();
+        $user = $this->UserModel->get($data["username"]);
 
-        if (!$this->UserModel->has_username($data["username"])) {
+        if ($user == null) {
             $ss->set_flashdata("msg_username", "Username doesn't exist");
             redirect(site_url("login"));
             return;
         }
-
-        $user = $this->UserModel->get($data["username"]);
 
         if (!password_verify($data["password"], $user->password)) {
             $ss->set_flashdata("msg_password", "Password doesn't match");
