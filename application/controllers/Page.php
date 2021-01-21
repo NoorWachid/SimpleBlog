@@ -31,18 +31,22 @@ class Page extends CI_Controller
         $ff = $this->form_validation;
         $ss = $this->session;
 
+        $username = $this->input->post("username");
+
         $ff->set_rules("username", "Username", "required");
         $ff->set_rules("password", "Password", "required");
+        $ss->set_flashdata("prv_username", $username);
 
         if (!$ff->run()) {
-            $ss->set_flashdata("msg_username", "Username required");
+            if (!$username) {
+                $ss->set_flashdata("msg_username", "Username required");
+            }
             $ss->set_flashdata("msg_password", "Password required");
             redirect(site_url("login"));
             return;
         }
 
-        $data = $this->input->post();
-        $user = $this->UserModel->get($data["username"]);
+        $user = $this->UserModel->get($username);
 
         if ($user == null) {
             $ss->set_flashdata("msg_username", "Username doesn't exist");
@@ -50,7 +54,7 @@ class Page extends CI_Controller
             return;
         }
 
-        if (!password_verify($data["password"], $user->password)) {
+        if (!password_verify($this->input->post("password"), $user->password)) {
             $ss->set_flashdata("msg_password", "Password doesn't match");
             redirect(site_url("login"));
             return;

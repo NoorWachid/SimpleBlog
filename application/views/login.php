@@ -33,7 +33,12 @@
         <div class="mb-5">
         <form action="<?php echo site_url("Page/login_process") ?>" method="post">
             <div class="form-group">
-                <input name="username" type="text" class="form-control" placeholder="Username">
+                <input 
+                    name="username" 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Username"
+                    value="<?php echo $this->session->flashdata("prv_username") ?>">
             </div>
             <div class="form-group">
                 <input name="password" type="password" class="form-control" placeholder="Password">

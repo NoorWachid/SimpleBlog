@@ -30,7 +30,7 @@ CREATE TABLE `comments` (
 );
 
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'noorwachid', '$2y$10$hfRDAotNJ3Ak0dMo3/mwde12QtxcbCW5Z.gRk1DfYX.PiKC/uvZte');
+(1, 'NoorWachid', '$2y$10$hfRDAotNJ3Ak0dMo3/mwde12QtxcbCW5Z.gRk1DfYX.PiKC/uvZte');
 
 INSERT INTO `posts` (`id`, `user_id`, `title`, `content`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Everything You Need To Know About Velocity', 'Velocity **is** a measure of how fast something moves in a particular direction. To define it needs both magnitude and direction. If an object moves east at 9 meters per second (9m/s), then its **velocity** is 9 m/s to the east.\r\n\r\nThe idea behind this is that speed doesn\'t tell us in which direction the object moves in a given frame of reference. Speed is one part of velocity, direction is the other part. Depending on the frame of reference, the velocity can be defined with many mathematical concepts required for making the correct analysis. ', '2021-01-12 17:00:00', '2021-01-12 17:00:00'),
