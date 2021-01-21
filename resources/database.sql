@@ -17,6 +17,18 @@ CREATE TABLE `posts` (
   FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 );
 
+CREATE TABLE `comments` (
+  `id` int(11) AUTO_INCREMENT,
+  `post_id` int(11),
+  `user_id` int(11),
+  `content` text,
+  `created_at` timestamp DEFAULT current_timestamp(),
+  `updated_at` timestamp DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
+  FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+);
+
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
 (1, 'noorwachid', '$2y$10$hfRDAotNJ3Ak0dMo3/mwde12QtxcbCW5Z.gRk1DfYX.PiKC/uvZte');
 
